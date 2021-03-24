@@ -81,7 +81,19 @@ Vue.component('gui-main', {
 			this.showConfirm('Are you sure?','This action will remove properties from the document. Undo will be available.', function (result) {
 				if (result) {
 					self.$root.save();
-					var schema = { openapi: self.openapi.openapi, info: { title: self.openapi.info.title, version: self.openapi.info.version}, paths: {} };
+					var schema = { 
+						openapi: self.openapi.openapi, 
+						info: { 
+							title: self.openapi.info.title, 
+							version: self.openapi.info.version}, 
+						paths: {},
+						tags: [],
+						components: {
+							schemas: {},
+							requestBodies: {},
+							securitySchemes: {}
+						}
+					};
 			        Vue.set(self.$root.container,'openapi',preProcessDefinition(schema));
 				}
 			});
